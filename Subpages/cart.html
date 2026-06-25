@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📚Cart | BookNest</title>
+    <link rel="shortcut icon" href="../img/ico.png">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #12133f;
+        }
+        .navbar {
+            font-family: "Roboto", sans-serif;
+            background-color: #12133f;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 400;
+            font-family: "Lilita One", sans-serif;
+        }
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .navbar a:hover {
+            background-size: 100cm;
+            background-color: #ffe1b8;
+            padding: 10px;
+            border-radius: 5px;
+            border: #E64833;
+            color: #77372e;
+            transform: scale(1.1);
+        }
+        .cart-container {
+            font-family: 'Dosis', sans-serif;
+            max-width: 1000px;
+            margin: 40px auto;
+            background: rgb(255, 218, 218);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .cart-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 1rem 0;
+        }
+        .cart-item img {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+        .item-details {
+            flex: 2;
+            display: flex;
+            align-items: center;
+        }
+        .item-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .item-price {
+            color: #666;
+            margin-top: 5px;
+        }
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .quantity input {
+            width: 40px;
+            padding: 5px;
+            text-align: center;
+        }
+        .remove-btn {
+            background: #e64833;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .remove-btn:hover {
+            background-color: #a93122;
+        }
+        .total {
+            text-align: right;
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .checkout-btn {
+            display: block;
+            margin: 2rem auto 0;
+            background-color: #12133f;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .checkout-btn:hover {
+            background-color: #31326f;
+        }
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .item-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .total {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">📚 BookNest</div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../BookPages/novels.html">Books</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Cart 🛒</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="cart-container">
+        <h2 class="cart-title">Book Cart<br>🛒</h2>
+        <div id="cart-items"></div>
+        <div class="total" id="cart-total">Total: $0.00</div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+    <script>
+        function loadCart() {
+            fetch('../php/fetch_cart.php')
+                .then(res => res.json())
+                .then(data => {
+                    const cartItems = document.getElementById('cart-items');
+                    const cartTotal = document.getElementById('cart-total');
+                    cartItems.innerHTML = '';
+
+                    if (!data.success || data.items.length === 0) {
+                        cartItems.innerHTML = '<p>Your cart is empty.</p>';
+                        cartTotal.textContent = 'Total: $0.00';
+                        return;
+                    }
+
+                    let total = 0;
+                    data.items.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        total += itemTotal;
+                        const cartItem = document.createElement('div');
+                        cartItem.className = 'cart-item';
+                        cartItem.innerHTML = `
+                            <div class="item-details">
+                                <img src="${item.image}" alt="${item.title}">
+                                <div class="item-info">
+                                    <span class="item-title">${item.title}</span>
+                                    <span class="item-price">$${parseFloat(item.price).toFixed(2)} <small>by ${item.author}</small></span>
+                                </div>
+                            </div>
+                            <div class="quantity">
+                                Qty: <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+                            </div>
+                            <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+                        `;
+                        cartItems.appendChild(cartItem);
+                    });
+
+                    cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Error loading cart. Check console.');
+                });
+        }
+
+        function updateQuantity(id, quantity) {
+            fetch('../php/update_cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${id}&quantity=${quantity}`
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    loadCart();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Error updating quantity. Check console.');
+            });
+        }
+
+        function removeFromCart(id) {
+            if (confirm('Are you sure you want to remove this item?')) {
+                fetch('../php/remove_from_cart.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `id=${id}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        loadCart();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Error removing item. Check console.');
+                });
+            }
+        }
+
+        function checkout() {
+            fetch('../php/checkout.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Checkout successful! Your order has been placed.');
+                    loadCart();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Error during checkout. Check console.');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCart);
+    </script>
+</body>
+</html>

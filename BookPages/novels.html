@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bookstore - Novels</title>
+    <link rel="shortcut icon" href="../img/ico.png">
+    <link rel="stylesheet" href="../styles/bookStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">📚 BookNest</div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#">Books</a></li>
+                <li><a href="../Subpages/profile.html">Profile</a></li>
+                <li><a href="../Subpages/contact.html">Contact</a></li>
+                <li><a href="../Subpages/cart.html">Cart 🛒</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <nav class="nav2bar">
+            <ul class="nav-links">
+                <li><a href="novels.html">Novels</a></li>
+                <li><a href="Edu.html">Educational</a></li>
+                <li><a href="Buissnes.html">Business</a></li>
+                <li><a href="Fiction.html">Fiction</a></li>
+                <li><a href="HotSelling.html">HotSelling</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="searchBooks()" placeholder="🔍 Search books by title...">
+        </div>
+        <section id="books-section">
+            <div class="books-grid">
+                <div class="book-item">
+                    <img src="img/books/book1.jpg">
+                    <h3>EN AGOSTO NOS VEMOS</h3>
+                    <p>Gabriel Garcia Marquez</p>
+                    <p>$10.20</p>
+                    <button onclick="addToCart(31, 'EN AGOSTO NOS VEMOS', 'Gabriel Garcia Marquez', 10.20, '../BookPages/img/books/book1.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book2.jpg">
+                    <h3>THREE DAYS IN JUNE</h3>
+                    <p>Anne Tyler</p>
+                    <p>$9.50</p>
+                    <button onclick="addToCart(32, 'THREE DAYS IN JUNE', 'Anne Tyler', 9.50, '../BookPages/img/books/book2.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book3.jpg">
+                    <h3>ORBITAL</h3>
+                    <p>Samantha Harvey</p>
+                    <p>$7.00</p>
+                    <button onclick="addToCart(33, 'ORBITAL', 'Samantha Harvey', 7.00, '../BookPages/img/books/book3.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book4.jpg">
+                    <h3>GOOD MATERIAL</h3>
+                    <p>Dolly Alderton</p>
+                    <p>$12.50</p>
+                    <button onclick="addToCart(34, 'GOOD MATERIAL', 'Dolly Alderton', 12.50, '../BookPages/img/books/book4.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book5.jpg">
+                    <h3>THE VANISHING HALF</h3>
+                    <p>Brit Bennett</p>
+                    <p>$10.50</p>
+                    <button onclick="addToCart(35, 'THE VANISHING HALF', 'Brit Bennett', 10.50, '../BookPages/img/books/book5.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book6.jpg">
+                    <h3>AMERICAN DIRT</h3>
+                    <p>Janine Cummins</p>
+                    <p>$12.50</p>
+                    <button onclick="addToCart(36, 'AMERICAN DIRT', 'Janine Cummins', 12.50, '../BookPages/img/books/book6.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book7.jpg">
+                    <h3>MARTYR!</h3>
+                    <p>Kaveh Akbar</p>
+                    <p>$12.50</p>
+                    <button onclick="addToCart(37, 'MARTYR!', 'Kaveh Akbar', 12.50, '../BookPages/img/books/book7.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book8.jpg">
+                    <h3>BEAUTIFUL WORLD, WHERE ARE YOU</h3>
+                    <p>Sally Rooney</p>
+                    <p>$5.57</p>
+                    <button onclick="addToCart(38, 'BEAUTIFUL WORLD, WHERE ARE YOU', 'Sally Rooney', 5.57, '../BookPages/img/books/book8.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book9.jpg">
+                    <h3>TELL ME EVERYTHING</h3>
+                    <p>Elizabeth Strout</p>
+                    <p>$13.00</p>
+                    <button onclick="addToCart(39, 'TELL ME EVERYTHING', 'Elizabeth Strout', 13.00, '../BookPages/img/books/book9.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book10.jpg">
+                    <h3>ASK FOR ANDREA</h3>
+                    <p>Noelle W. Ihli</p>
+                    <p>$12.00</p>
+                    <button onclick="addToCart(40, 'ASK FOR ANDREA', 'Noelle W. Ihli', 12.00, '../BookPages/img/books/book10.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book11.jpg">
+                    <h3>GRAY AFTER DARK</h3>
+                    <p>Noelle W. Ihli</p>
+                    <p>$10.00</p>
+                    <button onclick="addToCart(41, 'GRAY AFTER DARK', 'Noelle W. Ihli', 10.00, '../BookPages/img/books/book11.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book12.jpg">
+                    <h3>LETHAL PREY</h3>
+                    <p>John Sandford</p>
+                    <p>$12.50</p>
+                    <button onclick="addToCart(42, 'LETHAL PREY', 'John Sandford', 12.50, '../BookPages/img/books/book12.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book13.jpg">
+                    <h3>HIS FOREFATHERS AND MICK</h3>
+                    <p>Michael G. Kramer</p>
+                    <p>$12.50</p>
+                    <button onclick="addToCart(43, 'HIS FOREFATHERS AND MICK', 'Michael G. Kramer', 12.50, '../BookPages/img/books/book13.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book14.jpg">
+                    <h3>DREAM COUNT</h3>
+                    <p>Chimamanda Ngozi Adichie</p>
+                    <p>$11.00</p>
+                    <button onclick="addToCart(44, 'DREAM COUNT', 'Chimamanda Ngozi Adichie', 11.00, '../BookPages/img/books/book14.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book15.jpg">
+                    <h3>AUDITION</h3>
+                    <p>Katie Kitamura</p>
+                    <p>$15.00</p>
+                    <button onclick="addToCart(45, 'AUDITION', 'Katie Kitamura', 15.00, '../BookPages/img/books/book15.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book16.jpg">
+                    <h3>INVISIBLE</h3>
+                    <p>Eloy Moreno</p>
+                    <p>$8.50</p>
+                    <button onclick="addToCart(46, 'INVISIBLE', 'Eloy Moreno', 8.50, '../BookPages/img/books/book16.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book17.jpg">
+                    <h3>HAMNET</h3>
+                    <p>Maggie O'Farrell</p>
+                    <p>$9.00</p>
+                    <button onclick="addToCart(47, 'HAMNET', 'Maggie O\'Farrell', 9.00, '../BookPages/img/books/book17.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book18.jpg">
+                    <h3>THE BEE STING</h3>
+                    <p>Paul Murray</p>
+                    <p>$12.00</p>
+                    <button onclick="addToCart(48, 'THE BEE STING', 'Paul Murray', 12.00, '../BookPages/img/books/book18.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book19.jpg">
+                    <h3>HUNCHBACK</h3>
+                    <p>Polly Barton</p>
+                    <p>$8.50</p>
+                    <button onclick="addToCart(49, 'HUNCHBACK', 'Polly Barton', 8.50, '../BookPages/img/books/book19.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book20.jpg">
+                    <h3>NORTH WOODS</h3>
+                    <p>Daniel Mason</p>
+                    <p>$7.00</p>
+                    <button onclick="addToCart(50, 'NORTH WOODS', 'Daniel Mason', 7.00, '../BookPages/img/books/book20.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book21.jpg">
+                    <h3>THE SATSUMA COMPLEX</h3>
+                    <p>Bob Mortimer</p>
+                    <p>$10.00</p>
+                    <button onclick="addToCart(51, 'THE SATSUMA COMPLEX', 'Bob Mortimer', 10.00, '../BookPages/img/books/book21.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book22.jpg">
+                    <h3>PLAYGROUND</h3>
+                    <p>Richard Powers</p>
+                    <p>$14.00</p>
+                    <button onclick="addToCart(52, 'PLAYGROUND', 'Richard Powers', 14.00, '../BookPages/img/books/book22.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book23.jpg">
+                    <h3>WE DO NOT PART</h3>
+                    <p>Han Kang</p>
+                    <p>$8.25</p>
+                    <button onclick="addToCart(53, 'WE DO NOT PART', 'Han Kang', 8.25, '../BookPages/img/books/book23.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book24.jpg">
+                    <h3>THE MISSING SISTER</h3>
+                    <p>Lucinda Riley</p>
+                    <p>$9.50</p>
+                    <button onclick="addToCart(54, 'THE MISSING SISTER', 'Lucinda Riley', 9.50, '../BookPages/img/books/book24.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book25.jpg">
+                    <h3>ON THE CALCULATION OF VOLUME</h3>
+                    <p>Solveig Balle</p>
+                    <p>$7.00</p>
+                    <button onclick="addToCart(55, 'ON THE CALCULATION OF VOLUME', 'Solveig Balle', 7.00, '../BookPages/img/books/book25.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book26.jpg">
+                    <h3>GHOSTS</h3>
+                    <p>David Nicholls</p>
+                    <p>$12.00</p>
+                    <button onclick="addToCart(56, 'GHOSTS', 'David Nicholls', 12.00, '../BookPages/img/books/book26.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book27.jpg">
+                    <h3>THINK TWICE</h3>
+                    <p>Harlan Coben</p>
+                    <p>$8.75</p>
+                    <button onclick="addToCart(57, 'THINK TWICE', 'Harlan Coben', 8.75, '../BookPages/img/books/book27.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book28.jpg">
+                    <h3>WINDARKER 17</h3>
+                    <p>Caroline Wahl</p>
+                    <p>$10.50</p>
+                    <button onclick="addToCart(58, 'WINDARKER 17', 'Caroline Wahl', 10.50, '../BookPages/img/books/book28.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book29.jpg">
+                    <h3>RABBIT MOON</h3>
+                    <p>Jennifer Haigh</p>
+                    <p>$11.00</p>
+                    <button onclick="addToCart(59, 'RABBIT MOON', 'Jennifer Haigh', 11.00, '../BookPages/img/books/book29.jpg')">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="img/books/book30.jpg">
+                    <h3>SHUGGIE BAIN</h3>
+                    <p>Douglas Stuart</p>
+                    <p>$15.00</p>
+                    <button onclick="addToCart(60, 'SHUGGIE BAIN', 'Douglas Stuart', 15.00, '../BookPages/img/books/book30.jpg')">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2025 BookNest. All rights reserved.</p>
+    </footer>
+    <script>
+        function addToCart(id, title, author, price, image) {
+            fetch('../php/add_to_cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `book_id=${id}&title=${title}&author=${encodeURIComponent(author)}&price=${price}&image=${encodeURIComponent(image)}`
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`${title} added to cart!`);
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Error adding to cart. Check console.');
+            });
+        }
+
+        function searchBooks() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const books = document.querySelectorAll('.book-item');
+            books.forEach(book => {
+                const title = book.querySelector('h3').textContent.toLowerCase();
+                book.style.display = title.includes(input) ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

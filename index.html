@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📚BookNest | Where Stories Find a Home</title>
+    <link rel="shortcut icon" href="img/ico.png">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">📚 BookNest</div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="checkAuth(event, '/bookBook/index.html')">Home</a></li>
+                <li><a href="BookPages/novels.html" onclick="checkAuth(event, '/bookBook/BookPages/novels.html')">Books</a></li>
+                <li><a href="Subpages/profile.html" onclick="checkAuth(event, '/bookBook/Subpages/profile.html')">Profile</a></li>
+                <li><a href="Subpages/contact.html" onclick="checkAuth(event, '/bookBook/Subpages/contact.html')">Contact</a></li>
+                <li><a href="Subpages/cart.html" onclick="checkAuth(event, '/bookBook/Subpages/cart.html')">Cart 🛒</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="slide-up">DISCOVER YOUR NEXT FAVOURITE BOOK</h1>
+            <p class="fadeDelay">Thousands of stories, just a click away.</p>
+            <button onclick="checkAuth(event, '/bookBook/BookPages/novels.html')" class="glowBtn">Browse Now
+                <div class="particles-field" id="particleField"></div>
+            </button>         
+        </div>
+    </section>
+    <footer class="footer">
+        <p>© 2025 BookNest. All rights reserved.</p>
+    </footer>
+    <script>
+        function checkAuth(event, targetUrl) {
+            event.preventDefault();
+            fetch('php/check_session.php')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.logged_in) {
+                        window.location.href = targetUrl;
+                    } else {
+                        sessionStorage.setItem('redirectAfterLogin', targetUrl);
+                        window.location.href = '/bookBook/Subpages/auth.html';
+                    }
+                })
+                .catch(err => {
+                    console.error('Error checking session:', err);
+                    alert('Error checking login status. Please try again.');
+                });
+        }
+
+        const particleField = document.getElementById('particleField');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+            particle.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
+            particle.style.animation = `particleFloat ${1 + Math.random() * 2}s infinite`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particleField.appendChild(particle);
+        }
+    </script>
+</body>
+</html>

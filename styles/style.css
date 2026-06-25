@@ -1,0 +1,238 @@
+:root {
+    --primary-dark: #244855;
+    --accent: #E64833;
+    --earth: #874F41;
+    --soft-blue: #90AEAD;
+    --cream: #FBE9D0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Segoe UI', sans-serif;
+    
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--primary-dark);
+    overflow-x: hidden;
+}
+
+.navbar {
+    background-color: #222249;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.logo{
+    font-size: 1.75rem;
+    font-weight: 400;
+    font-family: "Lilita One", sans-serif;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background-size: 100cm;
+    background-color: #ffe1b8;
+    padding: 10px;
+    border-radius: 5px;
+    border: #E64833;
+    color: #77372e;
+    transform: scale(1.1);
+}
+
+.hero {
+    background: url("../img/bg.jpg") no-repeat center center/cover;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    background-color: rgba(36, 51, 85, 0.648);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    max-width: 650px;
+    animation: floatUp 1s ease-out forwards;
+}
+
+.hero h1 {
+    font-family: "Dosis", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    font-size: 60px;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: slideUp 1s ease-out 0.2s forwards;
+}
+
+.hero p {
+    font-family: "Playwrite DK Loopet", cursive;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.8s forwards;
+}
+
+.hero button {
+    background-color: #ff8474;
+    padding: 10px;
+    border-radius: 55px;   
+    position: relative;
+    padding: 1.5rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    min-width: 200px;
+    z-index: 1;
+}
+.hero button{
+    background: #ffb180;
+    border: none;
+    overflow: visible;
+}
+
+.particles-field {
+    position: absolute;
+    inset: -100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.hero button:hover .particles-field {
+    opacity: 1;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translate(var(--x), var(--y)) scale(0);
+    }
+
+    50% {
+        transform: translate(calc(var(--x) * -1), calc(var(--y) * -1)) scale(1);
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+    }
+}
+
+.hero button:hover {
+    background-color:#482b27;
+    transform: scale(1.05);
+}
+
+.glow-btn {
+    box-shadow: 0 0 15px var(--accent);
+}
+
+.footer {
+    background-color: var(--primary-dark);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.book-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.page-section h2 {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

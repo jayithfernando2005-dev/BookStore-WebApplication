@@ -1,0 +1,267 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e5f8ff;
+    color: #333;
+    
+}
+.nav2bar {
+    background-color: #3a3c65;
+    padding: 0.75rem 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+}
+
+.nav-links li a {
+    font-size: 22px;
+    font-family: "Exo 2", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    position: relative;
+    padding: 4px 0;
+}
+.nav-links li a::before{
+    content: "";
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    transition: 0.5s transform ease;
+    transform: scale3d(0, 1, 1);
+    transform-origin: 0 50%;
+    background: #ffe6ef;
+    transform-origin: 100% 50%;
+}
+.nav-links li a:hover::before {
+    transform-origin: 0 50%;
+    transform: scale3d(1, 1, 1);
+}
+.nav-links li a:hover {
+    color: #ffc5a6;
+    font-weight: 800;
+    box-shadow: #4a90e2;
+}
+.navbar {
+    background-color:#222249;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 400;
+    font-family: "Lilita One", sans-serif;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background-size: 100cm;
+    background-color: #ffe1b8;
+    padding: 10px;
+    border-radius: 5px;
+    border: #E64833;
+    color: #77372e;
+    transform: scale(1.1);
+}
+header {
+    background: radial-gradient(90deg, #1f3652, #854823);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#searchInput {
+    width: 60%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #555;
+    border-radius: 30px;
+    transition: 0.3s;
+    outline: none;
+    font-family: 'Dosis', sans-serif;
+}
+
+#searchInput:focus {
+    border-color: #00aaff;
+    box-shadow: 0 0 8px rgba(0, 170, 255, 0.5);
+}
+
+
+main {
+    padding: 30px 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    border-left: 5px solid #4a90e2;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.books-grid,
+.hot-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.book-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.book-item img {
+    max-width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.book-item h3 {
+    color: #0b061b;
+    font-size: 1.1rem;
+    margin: 10px 0 5px;
+}
+
+.book-item p {
+    font-size: 0.95rem;
+    margin: 4px 0;
+    color: #1a1639;
+}
+
+.book-item button {
+    margin-top: 12px;
+    padding: 10px 20px;
+    background-color: #29415d;
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.book-item button:hover {
+    background-color: #357abd;
+}
+
+#hot-selling {
+    margin-top: 60px;
+}
+.footer {
+    background-color: var(--primary-dark);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+.page-description {
+    font-family: "Bangers", system-ui;
+    padding: 1rem 2rem;
+    text-align: center;
+    background-color: #f3f3f3;
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+.carousel-container {
+    position: relative;
+    max-width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.book-item {
+    background-color: #daebff64;
+    min-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 3rem;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 5px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}

@@ -1,0 +1,14 @@
+node_modules/
+vendor/
+
+*.log
+
+.env
+
+Thumbs.db
+.DS_Store
+
+wamp/
+xampp/
+
+database_backup.sql

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bookstore - Hot Selling</title>
+    <link rel="shortcut icon" href="../img/ico.png">
+    <link rel="stylesheet" href="../styles/bookStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">📚 BookNest</div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#">Books</a></li>
+                <li><a href="../Subpages/profile.html">Profile</a></li>
+                <li><a href="../Subpages/contact.html">Contact</a></li>
+                <li><a href="../Subpages/cart.html">Cart 🛒</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <nav class="nav2bar">
+            <ul class="nav-links">
+                <ul class="nav-links">
+                    <li><a href="novels.html">Novels</a></li>
+                    <li><a href="Edu.html">Educational</a></li>
+                    <li><a href="Buissnes.html">Business</a></li>
+                    <li><a href="Fiction.html">Fiction</a></li>
+                    <li><a href="HotSelling.html">HotSelling</a></li>
+                </ul>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="searchBooks()" placeholder="🔍 Search books by title...">
+        </div>
+        <section class="page-description">
+            <p>
+                Discover our most popular books! These hot sellers are flying off the shelves and are loved by readers
+                worldwide. Whether you're into thrillers, romance, or self-development, you'll find a top-rated pick here.
+            </p>
+        </section>
+        <section id="books-section">
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+                <div class="carousel-track" id="carousel-track">
+                    <div class="book-item">
+                        <img src="img/books/hotbook1.jpg">
+                        <h3>THE VANISHING HALF</h3>
+                        <p>Brit Bennett</p>
+                        <p>$10.50</p>
+                        <button onclick="addToCart(61, 'THE VANISHING HALF', 'Brit Bennett', 10.50, '../BookPages/img/books/hotbook1.jpg')">Add to Cart</button>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/books/hotbook2.jpg">
+                        <h3>JULIE CHAN IS DEAD</h3>
+                        <p>Liann Zhang</p>
+                        <p>$12.50</p>
+                        <button onclick="addToCart(62, 'JULIE CHAN IS DEAD', 'Liann Zhang', 12.50, '../BookPages/img/books/hotbook2.jpg')">Add to Cart</button>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/books/hotbook3.jpg">
+                        <h3>FLIRTING WITH STOCKS</h3>
+                        <p>Anil Lamba</p>
+                        <p>$8.50</p>
+                        <button onclick="addToCart(63, 'FLIRTING WITH STOCKS', 'Anil Lamba', 8.50, '../BookPages/img/books/hotbook3.jpg')">Add to Cart</button>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/books/hotbook4.jpg">
+                        <h3>FLOATING WORLD</h3>
+                        <p>Axie Oh</p>
+                        <p>$10.50</p>
+                        <button onclick="addToCart(64, 'FLOATING WORLD', 'Axie Oh', 10.50, '../BookPages/img/books/hotbook4.jpg')">Add to Cart</button>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/books/hotbook5.jpg">
+                        <h3>TELL ME EVERYTHING</h3>
+                        <p>Elizabeth Strout</p>
+                        <p>$13.00</p>
+                        <button onclick="addToCart(65, 'TELL ME EVERYTHING', 'Elizabeth Strout', 13.00, '../BookPages/img/books/hotbook5.jpg')">Add to Cart</button>
+                    </div>
+                </div>
+                <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2025 BookNest. All rights reserved.</p>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        let filteredSlides = [];
+
+        function updateCarousel() {
+            const track = document.getElementById('carousel-track');
+            const slides = Array.from(track.children);
+            track.innerHTML = '';
+            filteredSlides.forEach(slide => track.appendChild(slide));
+            currentSlide = Math.min(currentSlide, filteredSlides.length - 1);
+            if (currentSlide < 0) currentSlide = 0;
+            const slideWidth = slides[0].offsetWidth;
+            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+
+        function moveSlide(direction) {
+            if (filteredSlides.length === 0) return;
+            currentSlide += direction;
+            if (currentSlide < 0) {
+                currentSlide = filteredSlides.length - 1;
+            } else if (currentSlide >= filteredSlides.length) {
+                currentSlide = 0;
+            }
+            const track = document.getElementById('carousel-track');
+            const slideWidth = track.children[0].offsetWidth;
+            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+
+        function searchBooks() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const track = document.getElementById('carousel-track');
+            const slides = Array.from(track.children);
+            filteredSlides = slides.filter(slide => {
+                const title = slide.querySelector('h3').textContent.toLowerCase();
+                return title.includes(input);
+            });
+            updateCarousel();
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                moveSlide(-1);
+            } else if (event.key === 'ArrowRight') {
+                moveSlide(1);
+            }
+        });
+
+        function addToCart(id, title, author, price, image) {
+            fetch('../php/add_to_cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `book_id=${id}&title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&price=${price}&image=${encodeURIComponent(image)}`
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`${title} added to cart!`);
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Error adding to cart. Check console.');
+            });
+        }
+    </script>
+</body>
+</html>

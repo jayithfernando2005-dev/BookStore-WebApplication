@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📚User Profile | BookNest</title>
+    <link rel="shortcut icon" href="../img/ico.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Dosis:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DK+Loopet:wght@100..400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            font-family: 'Dosis', sans-serif;
+            background: url("../img/profileBg.jpg") no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #12133f;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 400;
+            font-family: "Lilita One", sans-serif;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #ffe1b8;
+            padding: 10px;
+            border-radius: 5px;
+            border: #E64833;
+            color: #77372e;
+            transform: scale(1.1);
+        }
+
+        /* Profile Container */
+        .profile-container {
+            margin-top: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            color: #333;
+            animation: fadeIn 0.6s ease;
+        }
+
+        /* Profile Content */
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-family: "Bungee", sans-serif;
+            font-size: 2rem;
+            margin-bottom: 0.4rem;
+            color: #251414;
+        }
+
+        .bio {
+            font-size: 1rem;
+            margin: 0.3rem 0;
+            color: #552e2e;
+            font-family: "Handlee", cursive;
+        }
+
+        .mail {
+            font-size: 1rem;
+            margin: 0.3rem 0;
+            color: #441010;
+        }
+
+        /* Buttons */
+        .edit-btn,
+        .logout-btn {
+            margin-top: 1rem;
+            padding: 0.6rem 1.8rem;
+            background-color: #868fd4;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover,
+        .logout-btn:hover {
+            background-color: #202140;
+            transform: scale(1.05);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.4s ease;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .modal-content button {
+            margin-top: 1rem;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn {
+            background-color: #6b78da;
+            color: white;
+        }
+
+        .close-btn {
+            background-color: #ccc;
+            margin-left: 1rem;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .profile-container {
+                margin: 60px 1rem;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .edit-btn,
+            .logout-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">📚 BookNest</div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../BookPages/novels.html">Books</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html">Cart 🛒</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="profile-container">
+        <img src="https://i.pravatar.cc/150?img=7" alt="Profile Picture" class="profile-img" id="profile-img" />
+        <h2 id="profile-name">User</h2>
+        <div class="profile-info">
+            <p class="mail" id="profile-email"></p>
+            <p class="bio" id="profile-bio"></p>
+        </div>
+        <br>
+        <button class="logout-btn" onclick="logout()">Log Out</button>
+        <div class="error" id="profile-error"></div>
+    </div>
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3>Edit Your Profile</h3>
+            <form id="edit-form" enctype="multipart/form-data">
+                <label for="name">Name</label>
+                <input type="text" id="edit-name" name="name" required />
+                <label for="email">Email</label>
+                <input type="email" id="edit-email" name="email" required />
+                <label for="bio">Bio</label>
+                <textarea id="edit-bio" name="bio" rows="3"></textarea>
+                <label for="profile_image">Profile Image</label>
+                <input type="file" id="edit-image" name="profile_image" accept="image/*" />
+                <button type="submit" class="save-btn">Save</button>
+                <button type="button" class="close-btn" onclick="closeModal()">Cancel</button>
+                <div class="error" id="edit-error"></div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function loadProfile() {
+            fetch('../php/fetch_user.php')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        const user = data.user;
+                        document.getElementById('profile-name').textContent = user.name || 'User';
+                        document.getElementById('profile-email').textContent = user.email || '';
+                        document.getElementById('profile-bio').textContent = user.bio || '';
+                        document.getElementById('profile-img').src = user.profile_image || 'https://i.pravatar.cc/150?img=7';
+                    } else {
+                        document.getElementById('profile-error').textContent = data.message;
+                        setTimeout(() => window.location.href = 'auth.html', 2000);
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching profile:', err);
+                    document.getElementById('profile-error').textContent = 'Error loading profile. Please try again.';
+                });
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+            document.getElementById('edit-error').textContent = '';
+        }
+
+        function logout() {
+            fetch('../php/logout.php')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Successfully Logged out!');
+                        window.location.href = data.redirect;
+                    }
+                })
+                .catch(err => {
+                    console.error('Logout error:', err);
+                    alert('Error logging out. Please try again.');
+                });
+        }
+
+        document.getElementById('edit-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('../php/update_user.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        loadProfile();
+                        closeModal();
+                    } else {
+                        document.getElementById('edit-error').textContent = data.message;
+                    }
+                })
+                .catch(err => {
+                    console.error('Error updating profile:', err);
+                    document.getElementById('edit-error').textContent = 'Error updating profile. Please try again.';
+                });
+        });
+
+        window.addEventListener('DOMContentLoaded', loadProfile);
+        window.addEventListener('click', function (e) {
+            const modal = document.getElementById('editModal');
+            if (e.target === modal) closeModal();
+        });
+    </script>
+</body>
+
+</html>
